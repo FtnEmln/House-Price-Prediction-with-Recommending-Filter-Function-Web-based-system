@@ -1,0 +1,140 @@
+{% extends "base.html" %} {% block title %}Home- Sign Up{% endblock %}
+{% block content %}
+
+<form action="{{ url_for('result') }}" method="post" style="padding: 20px">
+    <h3 align="center">Insert New House</h3>
+    <div class="row justify-content-center mt-3">
+    </div>
+    <div class="form-group">
+        <label for="title">House Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Enter House Title" />
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <textarea rows="4" cols="50" class="form-control" id="address" name="address" placeholder="Enter address"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="username">Year Built</label>
+        <input type="text" class="form-control" id="year" name="year" placeholder="Enter house built year" />
+    </div>
+    <div class="form-group">
+        <label for="SizeArea">Size Area (sq ft.)</label>
+        <input type="text" class="form-control" id="SizeArea" name="SizeArea" placeholder="Enter House Size Area (sq ft.)" />
+    </div>
+    <div class="form-group">
+        <label for="type">House Type </label>
+        <select id="type" name="type">
+            <option value="1">Apartment</option>
+            <option value="2">Town House</option>
+            <option value="3">1 Storey Terrace House</option>
+            <option value="4">1.5 Storey Terrace House</option>
+            <option value="5">2 Storey Terrace House</option>
+            <option value="6">2.5 Storey Terrace House</option>
+            <option value="7">3 Storey Terrace House</option>
+            <option value="8">Bungalow</option>
+            <option value="9">Flat</option>
+            <option value="10">Twin House</option>
+            <option value="11">Terrace House</option>
+            <option value="12">Servis Apartment</option>
+            <option value="13">Dupleks</option>
+            <option value="14">Linked Bungalow</option>
+            <option value="15">Condominium</option>
+            <option value="16">Cluster House</option>
+        </select>
+        &nbsp;
+        <label for="status">House Status </label>
+        <select id="status" name="status">
+            <option value="1">Leasehold</option>
+            <option value="2">Freehold</option>
+        </select>
+        &nbsp;
+        <label for="Bedroom">Bedroom</label>
+        <select id="Bedroom" name="Bedroom">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+        </select>
+        &nbsp;
+        <label for="Bathroom">Bathroom</label>
+        <select id="Bathroom" name="Bathroom">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="facility">Facility Within 10 KM</label><br />
+        <input type="checkbox" id="transportation" name="transportation" value="1">
+        <input type="hidden" id="transportation" name="transportation" value="0">
+        <label for="transportation">Transportation</label>&nbsp; &nbsp;
+
+        <input type="checkbox" id="shop" name="shop" value="1">
+        <input type="hidden" id="shop" name="shop" value="0">
+        <label for="shop">Shop</label>&nbsp; &nbsp;
+
+        <input type="checkbox" id="school" name="school" value="1">
+        <input type="hidden" id="school" name="school" value="0">
+        <label for="school">School</label>&nbsp; &nbsp;
+
+        <input type="checkbox" id="islamic_Centre" name="islamic_Centre" value="1">
+        <input type="hidden" id="islamic_Centre" name="islamic_Centre" value="0">
+        <label for="islamic_Centre">Islamic Centre</label>&nbsp; &nbsp;
+
+        <input type="checkbox" id="medical_Centre" name="medical_Centre" value="1">
+        <input type="hidden" id="medical_Centre" name="medical_Centre" value="0">
+        <label for="medical_Centre">Medical Centre</label><br />
+
+        <input type="checkbox" id="sport_facility" name="sport_facility" value="1">
+        <input type="hidden" id="sport_facility" name="sport_facility" value="0">
+        <label for="sport_facility">Sport Facilities</label>&nbsp; &nbsp;
+
+        <input type="checkbox" id="pool" name="pool" value="1">
+        <input type="hidden" id="pool" name="pool" value="0">
+        <label for="pool">Pool</label>&nbsp; &nbsp;
+
+        <input type="checkbox" id="playground" name="playground" value="1">
+        <input type="hidden" id="playground" name="playground" value="0">
+        <label for="playground">Playground</label>&nbsp; &nbsp;
+        <br/><br/>
+        <label for="furnish">Furnished :</label>&nbsp; &nbsp;
+        <input type="radio" id="furnish" name="furnish" value="0" />
+        <label for="furnish1">Not Furnished</label>&nbsp; &nbsp;
+        <input type="radio" id="furnish" name="furnish" value="1" />
+        <label for="furnish2">Fully Furnished</label>&nbsp; &nbsp;
+        <input type="radio" id="furnish" name="furnish" value="2" />
+        <label for="furnish3">Half Furnished</label><br>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-secondary">Reset</button>
+    &nbsp; &nbsp;
+    &nbsp; &nbsp;
+    &nbsp; &nbsp;
+</form>
+
+{% endblock %}

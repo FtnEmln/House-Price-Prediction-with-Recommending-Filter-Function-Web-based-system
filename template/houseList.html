@@ -1,0 +1,100 @@
+{% extends "base.html" %} {% block title %}List of Houses {% endblock %}
+{% block content %}
+
+
+<div class="center">
+
+    <div>
+        <h1 align="center">List of House</h1>
+    </div>
+
+    <hr>
+
+    <div>
+        <table align="center" class="table-responsive-xxl">
+            <tbody>
+
+                {% for house in houses %}
+                <tr rowspan="7">
+                    <td>
+                <tr>
+                    <td colspan="5"><b>{{ house['HouseTitle'] }}</b></td>
+                    <td colspan="2"><b>RM {{ house['Price'] }}</b></td>
+                    <td colspan="2" rowspan="5">
+                        <form action="{{ url_for('updateHouse') }}" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="houseID" value="{{ house['HouseID'] }}" />
+                                <button class="btn btn-outline-primary btn-sm" type="submit">Update</button>
+                            </div>
+                        </form>
+                        &nbsp;
+                        <form action="{{ url_for('deleteHouse') }}" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="houseID" value="{{ house['HouseID'] }}" />
+                                <button class="btn btn-outline-warning btn-sm" id="delete-selected" type="submit">Delete</button>
+                            </div>
+                        </form>
+                        &nbsp;
+                        <form action="{{ url_for('buyerList') }}" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="houseID" value="{{ house['HouseID'] }}" />
+                                <button class="btn btn-outline-primary btn-sm" type="submit">Buyer</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5">Address: {{ house['HouseAddress'] }}</td>
+                </tr>
+                <tr>
+                    <td>Year: {{ house['HouseYear'] }}</td>
+                    <td> Bedroom: {{ house['Bedroom'] }}</td>
+                    <td> Bathroom: {{ house['Bathroom'] }}</td>
+                    <td> Size Area:{{ house['SizeArea'] }}</td>
+                </tr>
+                <tr>
+                    <td>Type: {{ house['HouseType'] }}</td>
+                    <td> Status: {{ house['HouseStatus'] }}</td>
+                    <td>Furnished: {{ house['furnished'] }} &nbsp; &nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="5"><b>Facilities Within 10 KM:</b> </td>
+                </tr>
+                <tr>
+                    <td>Transportation: {{ house['transportation'] }} &nbsp; &nbsp;</td>
+                    <td>Shop: {{ house['shop'] }} &nbsp; &nbsp;</td>
+                    <td>Playground: {{ house['playground'] }} &nbsp; &nbsp;</td>
+                    <td>School {{ house['school'] }} &nbsp; &nbsp;</td>
+                </tr>
+                <tr style="border-bottom: 1pt solid black">
+                    <td>Islamic Centre: {{ house['islamic_Centre'] }} &nbsp; &nbsp;</td>
+                    <td>Medical Centre: {{ house['medical_Centre'] }} &nbsp; &nbsp;</td>
+                    <td>Sport Facility: {{ house['sport_facility'] }} &nbsp; &nbsp;</td>
+                    <td>Pool: {{ house['pool'] }} &nbsp; &nbsp;</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        &nbsp;
+        <br/>
+        <br/>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('#house').DataTable({
+            columns: [
+                null,
+                { searchable: false },
+                { orderable: false, searchable: false },
+                null,
+                { searchable: false },
+                null,
+                { orderable: false, searchable: false }],
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends "base.html" %} {% block title %}List of Houses {% endblock %}
+{% block content %}
+
+
+<div class="center">
+
+    <div>
+        <h1 align="center">List of House</h1>
+    </div>
+
+    <hr>
+
+    <div>
+        <form class="center" action="{{ url_for('search') }}" method="post">
+            <label for="state">State</label>
+            <select id="state" name="state">
+                <option value="0">None</option>
+                <option value="Selangor">Selangor</option>
+                <option value="Kuala Lumpur">Kuala Lumpur</option>
+                <option value="Perak">Perak</option>
+                <option value="Pahang">Pahang</option>
+                <option value="Kelantan">Kelantan</option>
+                <option value="Johor">Johor</option>
+                <option value="Melaka">Melaka</option>
+                <option value="Pulau Pinang">Pulau Pinang</option>
+                <option value="Putrajaya">Putrajaya</option>
+                <option value="Labuan">Labuan</option>
+                <option value="Negeri Sembilan">Negeri Sembilan</option>
+                <option value="Sarawak">Sarawak</option>
+                <option value="Perlis">Perlis</option>
+                <option value="Kedah">Kedah</option>
+                <option value="Sabah">Sabah</option>
+                <option value="Terengganu">Terengganu</option>
+            </select>
+            <label for="type">House Type </label>
+            <select id="type" name="type">
+                <option value="0">None</option>
+                <option value="1">Apartment</option>
+                <option value="2">Town House</option>
+                <option value="3">1 Storey Terrace House</option>
+                <option value="4">1.5 Storey Terrace House</option>
+                <option value="5">2 Storey Terrace House</option>
+                <option value="6">2.5 Storey Terrace House</option>
+                <option value="7">3 Storey Terrace House</option>
+                <option value="8">Bungalow</option>
+                <option value="9">Flat</option>
+                <option value="10">Twin House</option>
+                <option value="11">Terrace House</option>
+                <option value="12">Servis Apartment</option>
+                <option value="13">Dupleks</option>
+                <option value="14">Linked Bungalow</option>
+                <option value="15">Condominium</option>
+                <option value="16">Cluster House</option>
+            </select>
+                <label for="status">House Status </label>
+                <select id="status" name="status">
+                    <option value="0">None</option>
+                    <option value="1">Leasehold</option>
+                    <option value="2">Freehold</option>
+                </select>
+                <label for="Bedroom">Bedroom</label>
+                <select id="Bedroom" name="Bedroom">
+                    <option value="0">None</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                </select>
+                <label for="Bathroom">Bathroom</label>
+                <select id="Bathroom" name="Bathroom">
+                    <option value="0">None</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+            <table align="center" id="myTable">
+                <tbody>
+
+                    {% for house in houses %}
+                    <tr rowspan="7">
+                        <td>
+                    <tr>
+                        <td colspan="5"><b>{{ house['HouseTitle'] }}</b></td>
+                        <td colspan="2"><b>RM {{ house['Price'] }}</b></td>
+                        <td colspan="2" rowspan="5">
+                            <form action="{{ url_for('addtofav') }}" method="post">
+                                <div class="form-group">
+                                    <input type="hidden" name="houseID" value="{{ house['HouseID'] }}" />
+                                    <input type="hidden" name="buyerid" value="{{buyerid}}" />
+                                    <button class="btn btn-outline-primary btn-sm" type="submit">Add to Favourite</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">Address: {{ house['HouseAddress'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Year: {{ house['HouseYear'] }}</td>
+                        <td> Bedroom: {{ house['Bedroom'] }}</td>
+                        <td> Bathroom: {{ house['Bathroom'] }}</td>
+                        <td> Size Area:{{ house['SizeArea'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Type: {{ house['HouseType'] }}</td>
+                        <td> Status: {{ house['HouseStatus'] }}</td>
+                        <td>Furnished: {{ house['furnished'] }} &nbsp; &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><b>Facilities Within 10 KM:</b> </td>
+                    </tr>
+                    <tr>
+                        <td>Transportation: {{ house['transportation'] }} &nbsp; &nbsp;</td>
+                        <td>Shop: {{ house['shop'] }} &nbsp; &nbsp;</td>
+                        <td>Playground: {{ house['playground'] }} &nbsp; &nbsp;</td>
+                        <td>School {{ house['school'] }} &nbsp; &nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom: 1pt solid black">
+                        <td>Islamic Centre: {{ house['islamic_Centre'] }} &nbsp; &nbsp;</td>
+                        <td>Medical Centre: {{ house['medical_Centre'] }} &nbsp; &nbsp;</td>
+                        <td>Sport Facility: {{ house['sport_facility'] }} &nbsp; &nbsp;</td>
+                        <td>Pool: {{ house['pool'] }} &nbsp; &nbsp;</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('#house').DataTable({
+            columns: [
+                null,
+                { searchable: false },
+                { orderable: true, searchable: false },
+                null,
+                { searchable: false },
+                null,
+                { orderable: true, searchable: false }],
+        });
+    });
+
+</script>
+{% endblock %}

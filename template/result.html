@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block title %}Prediction Result{% endblock %} {% block content %}
+<div class="p-5 pb-md-4 mx-auto text-center">
+
+    <h1>Predicted Outcome</h1>
+
+    <div class="container">
+        <p>The algorithm predicted the price of the house. </p>
+
+        <h3 class="mt-5">The price of this house is</h3>
+
+        <h2 class="text-uppercase" id="price">RM {{ price }}</h2>
+
+        <div class="gauge mt-4">
+            <div class="gauge__body">
+                <div class="gauge__fill"></div>
+                <div class="gauge__cover"></div>
+            </div>
+            <h3>Accuracy</h3>
+        </div>
+
+        <a href="{{ url_for('home') }}"><button class="btn btn-primary" type="button">Next Prediction &raquo;</button></a>
+
+        <script>
+			const gaugeElement = document.querySelector(".gauge");
+
+			function setGaugeValue(gauge, value) {
+			  if (value < 0 || value > 1) {
+				return;
+			  }
+
+			  gauge.querySelector(".gauge__fill").style.transform = `rotate(${
+				value / 2
+			  }turn)`;
+			  gauge.querySelector(".gauge__cover").textContent = `${
+				(value * 100).toFixed(2)
+			  }%`;
+			}
+
+			setGaugeValue(gaugeElement, {{ accuracy }});
+
+		
+
+        </script>
+
+    </div>
+
+</div>
+
+{% endblock %}

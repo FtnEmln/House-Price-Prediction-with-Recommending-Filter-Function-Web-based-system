@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% block title %}List of Houses {% endblock %}
+{% block content %}
+
+
+<div class="center">
+    <br/>
+    <br/>
+    <div>
+        <h4 align="center">List of Buyers for {{ houseTitle }}</h4>
+    </div>
+   
+    <div>
+        <table align="center" class="table-responsive-xxl" style="padding: 50px">
+            <tbody>
+                <tr style="border-bottom: 1pt solid black" >
+                    <th style="padding:20px">
+                        Name&nbsp;
+                    </th>
+                    <th style="padding:20px">
+                        Email&nbsp;
+                    </th>
+                    <th style="padding:20px">
+                        Phone No&nbsp;
+                    </th>
+                    <th style="padding:20px">
+                        &nbsp; Date Favourite&nbsp;
+                    </th>
+                </tr >
+                {% for buyer in buyers %}
+                <tr style="border-bottom: 1pt solid black">
+                    <td style="padding:20px">
+                        {{ buyer['name'] }} &nbsp;
+                    </td>
+                    <td style="padding:20px">
+                        {{ buyer['email'] }}&nbsp;
+                    </td>
+                    <td style="padding:20px">
+                        {{ buyer['phoneNo'] }}&nbsp;
+                    </td>
+                    <td style="padding:20px">
+                        {{ buyer['Created_At'] }}&nbsp;
+                    </td>
+                </tr >
+                {% endfor %}
+            </tbody>
+        </table>
+        &nbsp;
+        <br />
+        <br />
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('#house').DataTable({
+            columns: [
+                null,
+                { searchable: false },
+                { orderable: false, searchable: false },
+                null,
+                { searchable: false },
+                null,
+                { orderable: false, searchable: false }],
+        });
+    });
+</script>
+{% endblock %}

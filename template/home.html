@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block title %}Home -{{ username }} {% endblock %}
+
+{% block content%}
+
+<h2>Lets start prediction!</h2>
+<a href="{{ url_for('inputHouse') }}">
+    <button class="btn btn-outline-dark mt-3 mb-3" type="button">
+        Make Prediction &raquo;
+    </button>
+    {% endblock %}
+
